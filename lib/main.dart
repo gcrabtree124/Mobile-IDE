@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart' as quill;
+import 'package:flutter_quill/flutter_quill.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,13 +12,87 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final quill.QuillController controller = quill.QuillController.basic();
+    //final QuillEditorConfigurations quillConfiguration = QuillEditorConfigurations();
+
     return MaterialApp(
-      title: 'Flutter App',
+      title: 'Flutter Demo',
       theme: ThemeData(
+        // This is the theme of your application
+        //
+        // Notice that the counter didn't reset back to zero; the application
+        // state is not lost during the reload. To reset the state, use hot
+        // restart instead.
+        //
+        // This works for code too, not just values: Most code changes can be
+        // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Home Page'),
+      //home: const MyHomePage(title: 'Flutter Demo Home Page'),
+
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Quill Editor'),
+        ),
+        // Quill Editor
+        body: Column(
+          children: [
+            //quill.QuillEditor(
+            //controller: controller,
+            //scrollController: ScrollController(),
+            //focusNode: FocusNode(),
+            //configurations: quillConfiguration,
+            //),
+            QuillToolbar.simple(
+              configurations: QuillSimpleToolbarConfigurations(
+                controller: controller,
+                sharedConfigurations: const QuillSharedConfigurations(
+                  locale: Locale('de'),
+                ),
+              ),
+            ),
+            Expanded(
+              child: QuillEditor.basic(
+                configurations: QuillEditorConfigurations(
+                  controller: controller,
+                  readOnly: false,
+                  sharedConfigurations: const QuillSharedConfigurations(
+                    locale: Locale('de'),
+                  ),
+                ),
+              ),
+            )
+            // quill.QuillEditor(
+            //   // padding
+            //   //padding: const EdgeInsets.all(8),
+            //   // Pass the controller here
+            //   controller: controller,
+            //   // if you want to control the scroll define a
+            //   // scroll controller and pass it here
+            //   scrollController: ScrollController(),
+            //   // set true if you want the editor to be scrollable
+            //   // when the keyboard appears or too much content
+            //   //scrollable: true,
+            //   // pass a focus node if you want to control
+            //   // when the keyboard appears
+            //   focusNode: FocusNode(),
+            //   // if true the keyboard will appear
+            //   // when the widget is rendered
+            //   //autoFocus: false,
+            //   // set true if you want to disable editing
+            //   //readOnly: false,
+            //   // set true if you want the editor to expand and
+            //   // occupy all the available space
+            //   //expands: false,
+            //   // if there is no content this
+            //   // text will be displayed
+            //   //placeholder: 'Add your data here...',
+            //   configurations: quill.QuillEditorConfiguration(),
+            // ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -63,9 +139,6 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
@@ -85,19 +158,14 @@ class _MyHomePageState extends State<MyHomePage> {
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
           //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              //'You have pushed the button this many times:',
-              "files on the device will go here",
+              'You have pushed the button this many times:',
             ),
             Text(
-              //'$_counter',
-              //style: Theme.of(context).textTheme.headlineMedium,
-              " ",
+              '$_counter',
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
         ),
@@ -110,18 +178,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
