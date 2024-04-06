@@ -6,13 +6,33 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late quill.QuillController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = quill.QuillController.basic();
+  }
+
+  // Method to insert text into the editor
+  void _insertText(String text) {
+    final index = controller.selection.baseOffset;
+    final length = controller.selection.extentOffset - index;
+    controller.replaceText(index, length, text, null);
+  }
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final quill.QuillController controller = quill.QuillController.basic();
+    //final quill.QuillController controller = quill.QuillController.basic();
     //final QuillEditorConfigurations quillConfiguration = QuillEditorConfigurations();
 
     return MaterialApp(
@@ -62,7 +82,7 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
               ),
-            )
+            ),
             // quill.QuillEditor(
             //   // padding
             //   //padding: const EdgeInsets.all(8),
@@ -90,6 +110,44 @@ class MyApp extends StatelessWidget {
             //   //placeholder: 'Add your data here...',
             //   configurations: quill.QuillEditorConfiguration(),
             // ),
+
+            //Extra Buttons
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal, // Set scrolling direction to horizontal
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: () => _insertText("\t"),
+                    child: Text('Tab'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () => _insertText("//"),
+                    child: Text('//'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () => _insertText("{}"),
+                    child: Text('{}'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () => _insertText("()"),
+                    child: Text('()'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () => _insertText("if(){}else{}"),
+                    child: Text('if else'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () => _insertText("while(){}"),
+                    child: Text('while'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () => _insertText("for(){}"),
+                    child: Text('for'),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
