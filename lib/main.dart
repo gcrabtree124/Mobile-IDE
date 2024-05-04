@@ -96,7 +96,7 @@ class _MyAppState extends State<MyApp> {
         useMaterial3: true,
       ),
       home: Scaffold(
-        appBar: AppBar(title: const Text('Quill Editor')),
+        appBar: AppBar(title: const Text('Java Mobile IDE')),
         body: Column(
           children: [
             Expanded(
