@@ -1,13 +1,20 @@
 # Java Mobile IDE
-The program that read/write on registers in DDR5 RCD deivce using I2C communication
+Android Mobile IDE for Java. The program have a customized keyboard to increase typing speed.  
 
 ## Developed environment
 - Android Studio Iguana
 - Flutter 3.19.3
 - Dart SDK 3.3.1
 - Android SDK 14.0
+
 ## Devices used in the Project
 - Pixel_3a_API_34_extension_level_7_x86_64 (Virtual)
+
+## Structure
+- main.dart: Initialize the program
+- home.dart: Mainpage
+- file_system.dart: Contains functions for the file system (Save file, read file)
+
 
 ## Usage
 ![IDE_Mainpage](https://github.com/gcrabtree124/Mobile-IDE/assets/45058690/805791be-6a29-4687-93bc-0bf2dbe1999a)
