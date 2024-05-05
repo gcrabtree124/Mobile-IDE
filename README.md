@@ -17,10 +17,9 @@ Android Mobile IDE for Java. The program have a customized keyboard to increase 
 
 
 ## Usage
-![IDE_Mainpage](https://github.com/gcrabtree124/Mobile-IDE/assets/45058690/805791be-6a29-4687-93bc-0bf2dbe1999a)
 
 ### Main Page
-![image]
+![IDE_Mainpage](https://github.com/gcrabtree124/Mobile-IDE/assets/45058690/805791be-6a29-4687-93bc-0bf2dbe1999a)
 
 #### 1. Run Code. 
 1. Write code in the text editor.
